@@ -5,14 +5,14 @@ blockquote:before,blockquote:after,q:before,q:after{content:"";}
 blockquote,q{quotes:;}
 a img{border:none;}
 
-body {color: #fff; margin: 0;background: url(404_img/texture.png) repeat;}
+body {color: #fff; margin: 0;background: url(img/texture.png) repeat;}
 .container {width: 960px;margin:50px auto; text-align: center; font: 13px/22px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;color: #000;}
 
 h2{font: 22px/28px Georgia, "Times New Roman", Times, serif;}
 a{color: #000;}
 
 .box {
-	background: url(404_img/404.png) no-repeat 0 0;
+	background: url(img/404.png) no-repeat 0 0;
 	border-bottom: 5px solid #000;
 	height: 343px;
 	margin-bottom: 25px;
@@ -20,7 +20,7 @@ a{color: #000;}
 }
 
 .cover_pan{
-	background: #fff url(404_img/covers.jpg) repeat 1055px bottom;
+	background: #fff url(img/covers.jpg) repeat 1055px bottom;
 	height: 343px;
 	margin-left:1px; 
 	overflow: hidden;
