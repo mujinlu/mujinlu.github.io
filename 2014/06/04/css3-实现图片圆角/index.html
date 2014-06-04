@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Luckr&#39;s Blog</title>
+    <title>css3 实现图片圆角 | Luckr&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="LU">
     
-    <meta name="description" content="This is my first “Hello World”">
+    <meta name="description" content="利用CSS3特性简单快速实现图片圆角效果。">
     
     
     
@@ -69,15 +69,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/11/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2014/06/04/css3-实现图片圆角/" title="css3 实现图片圆角" itemprop="url">css3 实现图片圆角</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://luckr8.com" title="LU">LU</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-05-11T02:57:25.000Z" itemprop="datePublished">5月 11 2014</time>
-    更新日期:<time datetime="2014-05-13T16:14:22.000Z" itemprop="dateModified">5月 14 2014</time>
+    <time datetime="2014-06-04T08:24:08.000Z" itemprop="datePublished">6月 4 2014</time>
+    更新日期:<time datetime="2014-06-04T15:19:27.000Z" itemprop="dateModified">6月 4 2014</time>
     
   </p>
 </header>
@@ -89,22 +89,60 @@
 		
 		</div>
 		
-		<p>This is my first “Hello World”<a id="more"></a>,it’s the very memorable start of my new blog.I will write things down here to check for myself,and share it with you if it deserves your attention.Know more about me,click <a href="http://luckr8.com/ownpage/labs">here</a>!</p>
-  
+		<p>利用CSS3特性简单快速实现图片圆角效果。</p>
+<p><a id="more"></a><br>boder-radius是CSS3的一个新增属性，该属性能够简单快速的实现当下流行的圆角效果。下面着重讲述下社交网络中圆形头像的实现方法。</p>
+<p>在css3中，直接在图片上使用box-shadow 和 border-radius，浏览器并不能很好的渲染。但是如果把图片作为background-image，添加的样式浏览器可以很好的渲染。</p>
+<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"image-wrap "</span> <span class="attribute">style</span>=<span class="value">"position:relative; display:inline-block; background:url(image.jpg) no-repeat center center; width: 150px; height: 150px;"</span>&gt;</span> 
+<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">style</span>=<span class="value">"opacity: 0;"</span>&gt;</span> 
+<span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
+</code></pre><p>css代码</p>
+<pre><code><span class="class">.circle</span> <span class="class">.image-wrap</span> <span class="rules">{ 
+<span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
+<span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
+<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
+<span class="rule">}</span></span>
+</code></pre><p>注：以上border-radius的50em不一定为最终的值，可以根据想要达到的圆角效果设置不同的border-radius值。</p>
+<p>下面讲述如何实现圆角加阴影效果，简便起见只列出针对图像的CSS代码：<br>    img{<br>        width:54px;height:54px; /<em>设置图像的长和宽</em>/<br>        border-radius: 27px;/<em>设置图像圆角效果,在这里直接设置了超过width/2的像素，即为圆形</em>/<br>        -webkit-border-radius: 27px;/<em>圆角效果：兼容webkit浏览器</em>/<br>        -moz-border-radius:27px;<br>        box-shadow: inset 0 -1px 0 #3333sf;/<em>设置图像阴影效果</em>/<br>        -webkit-box-shadow: inset 0 -1px 0 #3333sf;<br>    }</p>
+<p>下面的效果比较酷，正如本博客左下角所示，实现鼠标悬浮时图像360度旋转：</p>
+<pre><code><span class="tag">img</span>{
+    <span class="attribute">width</span><span class="value">:<span class="number">54</span>px;</span><span class="attribute">height</span><span class="value">:<span class="number">54</span>px;</span> <span class="comment">/*设置图像的长和宽*/</span>
+    <span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*设置图像圆角效果,在这里直接设置了超过width/2的像素，即为圆形*/</span>
+    -webkit-<span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*圆角效果：兼容webkit浏览器*/</span>
+    -moz-<span class="attribute">border-radius</span><span class="value">:<span class="number">27</span>px;</span>
+    <span class="attribute">box-shadow</span><span class="value">: inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf;</span><span class="comment">/*设置图像阴影效果*/</span>
+    -webkit-<span class="attribute">box-shadow</span><span class="value">: inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf;</span>
+    -webkit-<span class="attribute">transition</span><span class="value">: <span class="number">0.4</span>s;</span>    
+    -webkit-<span class="attribute">transition</span><span class="value">: -webkit-transform <span class="number">0.4</span>s ease-out;</span>
+    <span class="attribute">transition</span><span class="value">: transform <span class="number">0.4</span>s ease-out;</span><span class="comment">/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/</span>
+    -moz-<span class="attribute">transition</span><span class="value">: -moz-transform <span class="number">0.4</span>s ease-out;</span>
+} 
+<span class="tag">img</span><span class="pseudo">:hover</span>{<span class="comment">/*设置鼠标悬浮在头像时的CSS样式*/</span>
+    <span class="attribute">box-shadow</span><span class="value">: <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="hexcolor">#fff</span>;</span> <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">6</span>)</span>, <span class="value">inset</span> 0 0 20px <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">1</span>)</span>;
+    -webkit-<span class="attribute">box-shadow</span><span class="value">: <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="hexcolor">#fff</span>;</span> <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">6</span>)</span>, <span class="value">inset</span> 0 0 20px <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">1</span>)</span>;
+    <span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span><span class="comment">/*图像旋转360度*/</span>
+    -webkit-<span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span>
+    -moz-<span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span>
+   }
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/生活/">生活</a>
+  <span></span> <a href="/tags/web前端/">web前端</a><a href="/tags/CSS3/">CSS3</a>
   </div>
 
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/web前端/">web前端</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://luckr8.com/2014/05/11/hello-world/" data-title="Hello World | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://luckr8.com/2014/06/04/css3-实现图片圆角/" data-title="css3 实现图片圆角 | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -113,14 +151,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/05/14/quick-sort/" title="Quick Sort">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Quick Sort</span>
+
+<div class="next">
+<a href="/2014/05/15/json浅析/"  title="JSON浅析">
+ <strong>NEXT:</strong><br/> 
+ <span>JSON浅析
+</span>
 </a>
 </div>
-
 
 </nav>
 
