@@ -506,12 +506,6 @@ body >header a {
     font-size: 0.7em;
   }
 }
-#words .img-wrap {
-  -webkit-border-radius: 50em;
-  -moz-border-radius: 50em;
-  -webkit-border-radius: 50em;
-  border-radius: 50em;
-}
 .navbar {
   position: absolute;
   width: 2em;
