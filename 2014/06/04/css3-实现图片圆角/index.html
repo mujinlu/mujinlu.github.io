@@ -77,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-06-04T08:24:08.000Z" itemprop="datePublished">6月 4 2014</time>
-    更新日期:<time datetime="2014-06-04T15:39:05.000Z" itemprop="dateModified">6月 4 2014</time>
+    更新日期:<time datetime="2014-06-05T08:33:28.000Z" itemprop="dateModified">6月 5 2014</time>
     
   </p>
 </header>
@@ -97,15 +97,15 @@
 <span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
 </code></pre><p>css代码</p>
 <pre><code><span class="class">.circle</span> <span class="class">.image-wrap</span> <span class="rules">{ 
-<span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
-<span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
-<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">50</span>em</span></span>; 
+<span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
+<span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
+<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
 <span class="rule">}</span></span>
-</code></pre><p>注：以上border-radius的50em不一定为最终的值，可以根据想要达到的圆角效果设置不同的border-radius值。</p>
+</code></pre><p>注：以上border-radius的50em不一定为最终的值，可以根据想要达到的圆角效果设置不同的border-radius值。要绘制一个正圆，首先给盒容器设定一个相同的width和height值，然后应用border-radius属性，把值设置为width/height的一半，就可以生成一个正圆了。</p>
 <p>下面讲述如何实现圆角加阴影效果，简便起见只列出针对图像的CSS代码：</p>
 <pre><code><span class="tag">img</span><span class="rules">{
     <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">54</span>px</span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">54</span>px</span></span>; <span class="comment">/*设置图像的长和宽*/</span>
-    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">27</span>px</span></span>;<span class="comment">/*设置图像圆角效果,在这里直接设置了超过width/2的像素，即为圆形*/</span>
+    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">27</span>px</span></span>;<span class="comment">/*设置图像圆角效果,在这里直接设置了width/2的像素，即为圆形*/</span>
     <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">27</span>px</span></span>;<span class="comment">/*圆角效果：兼容webkit浏览器*/</span>
     <span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"><span class="number">27</span>px</span></span>;
     <span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf</span></span>;<span class="comment">/*设置图像阴影效果*/</span>
@@ -114,7 +114,7 @@
 </code></pre><p>下面的效果比较酷，正如本博客左下角所示，实现鼠标悬浮时图像360度旋转：</p>
 <pre><code><span class="tag">img</span>{
     <span class="attribute">width</span><span class="value">:<span class="number">54</span>px;</span><span class="attribute">height</span><span class="value">:<span class="number">54</span>px;</span> <span class="comment">/*设置图像的长和宽*/</span>
-    <span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*设置图像圆角效果,在这里直接设置了超过width/2的像素，即为圆形*/</span>
+    <span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*设置图像圆角效果,在这里直接设置了width/2的像素，即为圆形*/</span>
     -webkit-<span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*圆角效果：兼容webkit浏览器*/</span>
     -moz-<span class="attribute">border-radius</span><span class="value">:<span class="number">27</span>px;</span>
     <span class="attribute">box-shadow</span><span class="value">: inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf;</span><span class="comment">/*设置图像阴影效果*/</span>
