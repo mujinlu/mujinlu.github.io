@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Quick Sort | Luckr&#39;s Blog</title>
+    <title>Google Rubik&#39;s Cube doodle 魔方涂鸦 | Luckr&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="LU">
     
-    <meta name="description" content="快速排序，递归中的分治哲学">
+    <meta name="description" content="谷歌于5.19日魔方发明40周年，推出3D互动魔方涂鸦">
     
     
     
@@ -69,15 +69,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/05/14/quick-sort/" title="Quick Sort" itemprop="url">Quick Sort</a>
+      <a href="/2014/05/20/google-rubiks-cube-doodle-魔方涂鸦/" title="Google Rubik&#39;s Cube doodle 魔方涂鸦" itemprop="url">Google Rubik&#39;s Cube doodle 魔方涂鸦</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://luckr8.com" title="LU">LU</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-05-14T07:19:18.000Z" itemprop="datePublished">5月 14 2014</time>
-    更新日期:<time datetime="2014-05-14T11:47:16.000Z" itemprop="dateModified">5月 14 2014</time>
+    <time datetime="2014-05-20T07:26:39.000Z" itemprop="datePublished">5月 20 2014</time>
+    更新日期:<time datetime="2014-06-06T08:45:42.000Z" itemprop="dateModified">6月 6 2014</time>
     
   </p>
 </header>
@@ -86,130 +86,40 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先睹为快"><span class="toc-number">1.</span> <span class="toc-text">先睹为快</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现在可以公开的情报"><span class="toc-number">2.</span> <span class="toc-text">现在可以公开的情报</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MORE"><span class="toc-number">3.</span> <span class="toc-text">MORE</span></a></li></ol>
 		</div>
 		
-		<p>快速排序，递归中的分治哲学<br><a id="more"></a></p>
-<p><em>声明</em>：本文仅供学习交流，其中可能借鉴了其它一些网络内容，由于内容较杂没有完全声明，如果您是原作者并且认为这侵害了您的权益，请联系作者。</p>
-<p>快速排序的算法复杂度为O(N * logN)，在排序算法中算得上是效率较高的，再加上快排对递归的思想体现较为全面，因此快排经常被面试官所考察，也是一些考试中的常客。</p>
-<p>单从算法思想的角度来看，快排并不难理解。快速排序大致分为3步（以升序为例）：</p>
-<ol>
-<li>从要排序数组中选择一个基准数。</li>
-<li>以该基准数为界，将数组中小于该基准的移动至左边，大于该基准的移动至右边。</li>
-<li>对左边和右边的部分，重复1，2。</li>
-</ol>
-<p>是不是很简单？下面从计算机的世界，来看一下快速排序。<br>一种基本的做法是：使用首尾两个指针，依次往中间移动，左右两个指针找到符合条件的数则移动到对方阵营留空的位置，以升序来说，如果左指针移动过程中发现大于基准的数，则移动至右半部分的空位置。以数组a为例：</p>
-<p><table>    </p>
-<p><tr></p>
-<p><td>索引</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><br></tr></p>
-<p><tr></p>
-<p><td>值</td><td style="color:red;">37</td><td>50</td><td>30</td><td>33</td><td>45</td><td>58</td><td>66</td><td>20</td><br></tr><br></table><br>首先，选取数组第一个值37作为基准，初始设置，i=0，j=7，基准B=a[i]=37;<br>由于a[0]已经存到变量B，可以认为位置0为一个坑，<em>则由j开始递减，寻找小于基准B的数，填充到a[0]，此处这个数为a[7]=20，将其移至a[0]；a[7]位置可以认为空出，则由i开始递增，寻找大于基准B的数，移动至a[7]</em>。</p>
-<p><table></p>
-<p><tr></p>
-<p><td>索引</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><br></tr></p>
-<p><tr></p>
-<p><td>值</td><td>20</td><td>50<em>空位置</em></td><td>30</td><td>33</td><td>45</td><td>58</td><td>66</td><td>50</td><br></tr><br></table><br>重复以上步骤，直至i=j；将基准B放到位置i，此时位置i以左全部小于a[i],以右全部大于a[i]，完成第一次分治。</p>
-<p><table></p>
-<p><tr></p>
-<p><td>索引</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><br></tr></p>
-<p><tr></p>
-<p><td>值</td><td>20</td><td>33</td><td>30</td><td><em>最终分界点</em></td><td>45</td><td>58</td><td>66</td><td>50</td><br></tr><br></table><br>明白了其排序方法之后，附代码：</p>
-<pre><code><span class="keyword">void</span> quick_sort(<span class="keyword">int</span> s[], <span class="keyword">int</span> <span class="built_in">length</span>,<span class="keyword">int</span> start,<span class="keyword">int</span> end)
-{
-    <span class="keyword">if</span> ((end-start &lt; <span class="built_in">length</span>)&amp;&amp;(end-start&gt;<span class="number">1</span>))
-    {
-        <span class="keyword">int</span> i = start, j = end, x = s[start];
-        <span class="keyword">while</span> (i &lt; j)
-        {
-            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[j] &gt;= x) <span class="comment">// 从右向左找第一个小于x的数</span>
-                j--; 
-            <span class="keyword">if</span>(i &lt; j)
-                 s[i++] = s[j];
-
-            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[i] &lt; x) <span class="comment">// 从左向右找第一个大于等于x的数</span>
-                  i++; 
-            <span class="keyword">if</span>(i &lt; j)
-                  s[j--] = s[i];
-        }
-        s[i] = x;
-        quick_sort(s, i-start, start,i - <span class="number">1</span>); <span class="comment">// 递归调用</span>
-        quick_sort(s, end-i,i + <span class="number">1</span>, end);
-    }
-}
-</code></pre><p>好了，至此你已经可以徒手写出一个快速排序了。<br>由于本人对前端技术有一定研究，此处当然要尝（得）试（瑟）一下了，附JavaScript代码：</p>
-<pre><code><span class="keyword">var</span> qucikSort=<span class="function"><span class="keyword">function</span><span class="params">(arr)</span>{</span>
-    <span class="keyword">if</span> (arr.length&lt;<span class="number">2</span>)
-        <span class="keyword">return</span> arr;
-    <span class="keyword">var</span> baseIndex = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*arr.length);
-　　<span class="keyword">var</span> baseValue = arr.splice(baseIndex, <span class="number">1</span>)[<span class="number">0</span>];
-　　<span class="keyword">var</span> left = [];
-　　<span class="keyword">var</span> right = [];
-　　<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++){
-　　　　<span class="keyword">if</span> (arr[i] &lt; baseValue) {
-　　　　　　left.push(arr[i]);
-　　　　} <span class="keyword">else</span> {
-　　　　　　right.push(arr[i]);
-　　　　}
-　　}
-　　<span class="keyword">return</span> quickSort(left).concat([baseValue], quickSort(right));
-}
-</code></pre><p>升级版实现：<br>分组函数：small与index指针均从首位置开始递增,small始终指向已排好位置的左侧最后一个数。index则从头至尾递增。</p>
-<pre><code><span class="keyword">int</span> Partition(<span class="keyword">int</span> data[],<span class="keyword">int</span> <span class="keyword">length</span>,<span class="keyword">int</span> start,<span class="keyword">int</span> end)
-{
-    <span class="keyword">if</span>(data == NULL || <span class="keyword">length</span>&lt;=<span class="number">0</span> || start&lt;<span class="number">0</span> ||end&gt;=<span class="keyword">length</span>)
-        throw new std::exception(<span class="string">"Invalid Paremeters"</span>);
-
-    <span class="keyword">int</span> <span class="keyword">index</span> = RandomInRange(start,end);
-    Swap(&amp;data[Index],&amp;data[end]);
-
-    <span class="keyword">int</span> small = start-<span class="number">1</span>;
-    <span class="keyword">for</span>(<span class="keyword">index</span> = start; <span class="keyword">index</span> &lt; end;++<span class="keyword">index</span>)
-    {
-        <span class="keyword">if</span>(data[<span class="keyword">index</span>] &lt; data[end])
-        {
-            ++small;
-            <span class="keyword">if</span>(small != <span class="keyword">index</span>)
-                Swap(&amp;data[<span class="keyword">index</span>],&amp;data[small]);
-        }
-    }
-    ++small;
-    Swap(&amp;data[small],&amp;data[end]);
-    <span class="keyword">return</span> small
-
-}
-</code></pre><p>递归实现快速排序</p>
-<pre><code>void QuickSort(<span class="keyword">int</span> data[],<span class="keyword">int</span> <span class="keyword">length</span>,<span class="keyword">int</span> start,<span class="keyword">int</span> end)
-{
-    <span class="keyword">if</span>(start == end)
-    <span class="keyword">return</span>;
-
-    <span class="keyword">int</span> <span class="keyword">index</span> = Partition(data,<span class="keyword">length</span>,start,end);
-    <span class="keyword">if</span>(<span class="keyword">index</span> &gt; start)
-        QuickSort(data,<span class="keyword">length</span>,start,<span class="keyword">index</span>-<span class="number">1</span>);
-    <span class="keyword">if</span>(<span class="keyword">index</span> &lt; end)
-        QuickSort(data,<span class="keyword">length</span>,<span class="keyword">index</span>+<span class="number">1</span>,end);
-}
-</code></pre><p>EOF</p>
+		<p>谷歌于5.19日魔方发明40周年，推出3D互动魔方涂鸦<br><a id="more"></a></p>
+<h3 id="先睹为快">先睹为快</h3>
+<p>Google的首页涂鸦大家已经屡见不鲜了，每当重要的节日，谷歌都会推出一些趣味涂鸦。这次也不例外，谷歌在魔方发明40周年这天推出了目前为止最酷的魔方Doodle。</p>
+<p><iframe width="100%" height="500px" src="https://www.google.com/logos/2014/rubiks/rubiks.html"></iframe><br>官网效果链接<a href="https://www.google.com/logos/2014/rubiks/rubiks.html" target="_blank">点此体验</a></p>
+<h3 id="现在可以公开的情报">现在可以公开的情报</h3>
+<p>魔方，英文名为Rubik’s Cube，又叫魔术方块，也称鲁比克方块。是匈牙利布达佩斯建筑学院厄尔诺·鲁比克教授在1974年发明的。三阶魔方系由富有弹性的硬塑料制成的6面正方体，共有26块小立方体。魔方与中国人发明的“华容道”，法国人发明的“独立钻石”一块被称为智力游戏界的三大不可思议。而魔方受欢迎的程度更是智力游戏界的奇迹。  ——（感谢度娘）</p>
+<p>谷歌有一个魔方实验室，Cube Lab，据说谷歌花了两个月的时间才完成该魔方涂鸦，其技术含量可见一斑。3D互动魔方的出现，也得益于CSS3技术的发展提高，使得在浏览器中可以轻松的实现3D变换。</p>
+<p>来看看魔方发明者本人怎么说</p>
+<p>魔方出生于1974年，作为一种教学工具来帮助我和我的学生更好地理解空间和3D。魔方使我们不断地挑战从混乱中找到秩序。自那时以来，技术给我们带来新的进步，包括我们如何学习，以及我们如何应对令人眼花缭乱的复杂。谷歌魔方实验室充分利用了这一进步，它鼓励好奇心和解决问题的能力 - 魔方最初的诞生也是基于这个原因。我迫不及待地想看到人们通过他们的浏览器来了解三维物体，并尝试所有的可能性，当魔方使用最先进的Web技术重新跳起吉格舞。魔方起来！ ——-Professor Ernő Rubik</p>
+<h3 id="MORE">MORE</h3>
+<p><a href="https://chrome.com/cubelab" target="_blank">谷歌魔方实验室</a><br><a href="https://github.com/mujinlu/cube" target="_blank">魔方源码</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/排序/">排序</a>
+  <span></span> <a href="/tags/创意/">创意</a><a href="/tags/geek/">geek</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
+  <a class="article-category-link" href="/categories/geek/">geek</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://luckr8.com/2014/05/14/quick-sort/" data-title="Quick Sort | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://luckr8.com/2014/05/20/google-rubiks-cube-doodle-魔方涂鸦/" data-title="Google Rubik&#39;s Cube doodle 魔方涂鸦 | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -219,18 +129,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/05/15/json浅析/" title="JSON浅析">
+ <a href="/2014/06/04/css3-实现图片圆角/" title="css3 实现图片圆角">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  JSON浅析</span>
+  css3 实现图片圆角</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/05/11/hello-world/"  title="Hello World">
+<a href="/2014/05/15/json浅析/"  title="JSON浅析">
  <strong>NEXT:</strong><br/> 
- <span>Hello World
+ <span>JSON浅析
 </span>
 </a>
 </div>
@@ -247,7 +157,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#先睹为快"><span class="toc-number">1.</span> <span class="toc-text">先睹为快</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现在可以公开的情报"><span class="toc-number">2.</span> <span class="toc-text">现在可以公开的情报</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MORE"><span class="toc-number">3.</span> <span class="toc-text">MORE</span></a></li></ol>
   </div>
 
 <div id="asidepart">
