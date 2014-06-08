@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>css3 实现图片圆角 | Luckr&#39;s Blog</title>
+    <title>JS事件冒泡 事件委托 | Luckr&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="LU">
     
-    <meta name="description" content="利用CSS3特性简单快速实现图片圆角效果。">
+    <meta name="description" content="JavaScript与HTML之间的交互是通过事件来实现的。事件，就是文档或者浏览器窗口中发生的一些特定的交互瞬间。可以使用侦听器（或处理程序）来预订事件，以便事件发生时执行相应的代码。这种模式在传统软件工程中被称为观察员模式，它支持页面的行为（JavaScript代码）与页面的外观（HTML,CS">
     
     
     
@@ -69,15 +69,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/06/04/css3-实现图片圆角/" title="css3 实现图片圆角" itemprop="url">css3 实现图片圆角</a>
+      <a href="/2014/06/07/js事件冒泡-事件委托/" title="JS事件冒泡 事件委托" itemprop="url">JS事件冒泡 事件委托</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://luckr8.com" title="LU">LU</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-06-04T08:24:08.000Z" itemprop="datePublished">6月 4 2014</time>
-    更新日期:<time datetime="2014-06-05T08:33:28.000Z" itemprop="dateModified">6月 5 2014</time>
+    <time datetime="2014-06-07T11:53:01.000Z" itemprop="datePublished">6月 7 2014</time>
+    更新日期:<time datetime="2014-06-08T09:13:38.000Z" itemprop="dateModified">6月 8 2014</time>
     
   </p>
 </header>
@@ -86,58 +86,73 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件冒泡"><span class="toc-number">1.</span> <span class="toc-text">事件冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件捕获"><span class="toc-number">2.</span> <span class="toc-text">事件捕获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM事件流"><span class="toc-number">3.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件代理和委托（Delegation）"><span class="toc-number">4.</span> <span class="toc-text">事件代理和委托（Delegation）</span></a></li></ol>
 		</div>
 		
-		<p>利用CSS3特性简单快速实现图片圆角效果。</p>
-<p><a id="more"></a><br>boder-radius是CSS3的一个新增属性，该属性能够简单快速的实现当下流行的圆角效果。下面着重讲述下社交网络中圆形头像的实现方法。</p>
-<p>在css3中，直接在图片上使用box-shadow 和 border-radius，浏览器并不能很好的渲染。但是如果把图片作为background-image，添加的样式浏览器可以很好的渲染。</p>
-<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"image-wrap "</span> <span class="attribute">style</span>=<span class="value">"position:relative; display:inline-block; background:url(image.jpg) no-repeat center center; width: 150px; height: 150px;"</span>&gt;</span> 
-<span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">style</span>=<span class="value">"opacity: 0;"</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
-</code></pre><p>css代码</p>
-<pre><code><span class="class">.circle</span> <span class="class">.image-wrap</span> <span class="rules">{ 
-<span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
-<span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
-<span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">75</span>px</span></span>; 
-<span class="rule">}</span></span>
-</code></pre><p>注：以上border-radius的50em不一定为最终的值，可以根据想要达到的圆角效果设置不同的border-radius值。要绘制一个正圆，首先给盒容器设定一个相同的width和height值，然后应用border-radius属性，把值设置为width/height的一半，就可以生成一个正圆了。</p>
-<p>下面讲述如何实现圆角加阴影效果，简便起见只列出针对图像的CSS代码：</p>
-<pre><code><span class="tag">img</span><span class="rules">{
-    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">54</span>px</span></span>;<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">54</span>px</span></span>; <span class="comment">/*设置图像的长和宽*/</span>
-    <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">27</span>px</span></span>;<span class="comment">/*设置图像圆角效果,在这里直接设置了width/2的像素，即为圆形*/</span>
-    <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">27</span>px</span></span>;<span class="comment">/*圆角效果：兼容webkit浏览器*/</span>
-    <span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"><span class="number">27</span>px</span></span>;
-    <span class="rule"><span class="attribute">box-shadow</span>:<span class="value"> inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf</span></span>;<span class="comment">/*设置图像阴影效果*/</span>
-    <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf</span></span>;
-<span class="rule">}</span></span>
-</code></pre><p>下面的效果比较酷，正如本博客左下角所示，实现鼠标悬浮时图像360度旋转：</p>
-<pre><code><span class="tag">img</span>{
-    <span class="attribute">width</span><span class="value">:<span class="number">54</span>px;</span><span class="attribute">height</span><span class="value">:<span class="number">54</span>px;</span> <span class="comment">/*设置图像的长和宽*/</span>
-    <span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*设置图像圆角效果,在这里直接设置了width/2的像素，即为圆形*/</span>
-    -webkit-<span class="attribute">border-radius</span><span class="value">: <span class="number">27</span>px;</span><span class="comment">/*圆角效果：兼容webkit浏览器*/</span>
-    -moz-<span class="attribute">border-radius</span><span class="value">:<span class="number">27</span>px;</span>
-    <span class="attribute">box-shadow</span><span class="value">: inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf;</span><span class="comment">/*设置图像阴影效果*/</span>
-    -webkit-<span class="attribute">box-shadow</span><span class="value">: inset <span class="number">0</span> -<span class="number">1</span>px <span class="number">0</span> <span class="hexcolor">#3333</span>sf;</span>
-    -webkit-<span class="attribute">transition</span><span class="value">: <span class="number">0.4</span>s;</span>    
-    -webkit-<span class="attribute">transition</span><span class="value">: -webkit-transform <span class="number">0.4</span>s ease-out;</span>
-    <span class="attribute">transition</span><span class="value">: transform <span class="number">0.4</span>s ease-out;</span><span class="comment">/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/</span>
-    -moz-<span class="attribute">transition</span><span class="value">: -moz-transform <span class="number">0.4</span>s ease-out;</span>
-} 
-<span class="tag">img</span><span class="pseudo">:hover</span>{<span class="comment">/*设置鼠标悬浮在头像时的CSS样式*/</span>
-    <span class="attribute">box-shadow</span><span class="value">: <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="hexcolor">#fff</span>;</span> <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">6</span>)</span>, <span class="value">inset</span> 0 0 20px <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">1</span>)</span>;
-    -webkit-<span class="attribute">box-shadow</span><span class="value">: <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="hexcolor">#fff</span>;</span> <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">6</span>)</span>, <span class="value">inset</span> 0 0 20px <span class="function">rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">1</span>)</span>;
-    <span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span><span class="comment">/*图像旋转360度*/</span>
-    -webkit-<span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span>
-    -moz-<span class="attribute">transform</span><span class="value">: rotateZ(<span class="number">360</span>deg);</span>
-   }
+		<p>JavaScript与HTML之间的交互是通过事件来实现的。事件，就是文档或者浏览器窗口中发生的一些特定的交互瞬间。可以使用侦听器（或处理程序）来预订事件，以便事件发生时执行相应的代码。这种模式在传统软件工程中被称为观察员模式，它支持页面的行为（JavaScript代码）与页面的外观（HTML,CSS）的松散耦合。</p>
+<h3 id="事件冒泡">事件冒泡</h3>
+<p>IE的事件流叫事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传递到较为不具体的节点。如下：</p>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>bubbling example<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"deepDiv"</span>&gt;</span>Click<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre><p>单击deepDiv，则click事件会按照如下顺序传播：</p>
+<blockquote>
+<p>(1)&lt; div&gt;<br>(2)&lt; body&gt;<br>(3)&lt; html&gt;<br>(4)document</p>
+</blockquote>
+<p>  click事件首先在&lt; div &gt;元素上发生，然后单击事件沿DOM树向上传播，在每一级节点都会发生，直至传播到document对象。</p>
+<p><img src="/img/bubble1.jpg" /></p>
+<h3 id="事件捕获">事件捕获</h3>
+<p>Netscape Comminicator团队提出的另一种事件流叫做事件捕获。事件捕获的思想与事件冒泡截然相反，是由不太具体的节点更早收到事件，而具体的节点最后才收到事件。事件捕获可以在事件到达预定目标节点之前捕获它。仍以前面的页面为例，事件传播顺序如下：</p>
+<blockquote>
+<p>(1)document<br>(2) &lt; html &gt;<br>(3)&lt; body&gt;<br>(4)&lt; div&gt;</p>
+</blockquote>
+<p>document对象首先接收到click事件，然后事件沿DOM树向下传播，直到实际目标div元素。</p>
+<p><img src="/img/capture.jpg" /></p>
+<p>值得注意的是，尽管DOM2规范要求事件从document对象开始传播，但大多数浏览器均从window对象开始捕获事件。<br>由于老版本的浏览器不支持，因此建议使用事件冒泡，有特殊需求时再用事件捕获。</p>
+<h3 id="DOM事件流">DOM事件流</h3>
+<p>DOM2级事件指定的事件流包括三个阶段：事件捕获阶段，处于目标阶段，事件冒泡阶段。最先发生的是事件捕获，此时可以截获事件，接着是处于目标阶段，此时实际的目标接收到事件，最后是冒泡阶段，此时可以对事件作出响应。以前述为例，图示如下：</p>
+<p><img src="/img/bcdom.jpg" /></p>
+<h3 id="事件代理和委托（Delegation）">事件代理和委托（Delegation）</h3>
+<p>事件代理（Event Delegation），又称之为事件委托。是 JavaScript 中常用绑定事件的常用技巧。“事件代理”即是把原本需要绑定的事件委托给父元素，让父元素担当事件监听的职务。大量的DOM操作对性能的消耗是非常大的，而事件代理的目的，就是避免大量的绑定事件，让父元素来绑定，监听子元素的大量事件。</p>
+<p>看一个例子：  </p>
+<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"parent-list"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-1"</span>&gt;</span>Item 1<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-2"</span>&gt;</span>Item 2<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-3"</span>&gt;</span>Item 3<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-4"</span>&gt;</span>Item 4<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-5"</span>&gt;</span>Item 5<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">id</span>=<span class="value">"post-6"</span>&gt;</span>Item 6<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</code></pre><p>通常我们为每个li添加一个单击事件的做法如下：</p>
+<pre><code>window.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+    <span class="keyword">var</span> ulNode = document.getElementById(<span class="string">"parent-list"</span>);
+    <span class="keyword">var</span> liNodes = ulNode.getElementByTagName(<span class="string">"Li"</span>);
+    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>, l = liNodes.length; i &lt; l; i++){
+        liNodes.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+        <span class="comment">/* 事件处理程序*/</span>}, <span class="literal">false</span>);<span class="comment">//第三个参数若为true,则浏览器采用Capture机制</span>
+    }   
+}
+</code></pre><p>为每个li元素绑定一个单击事件，其效率肯定是非常低下的。事实上我们可以利用事件的e.target获得所点击元素的对象属性，通过事件委托来实现同样的功能，可以减少内存开销，代码如下：</p>
+<pre><code>// 获取父节点，并为它添加一个click事件
+document<span class="preprocessor">.getElementById</span>(<span class="string">"parent-list"</span>)<span class="preprocessor">.addEventListener</span>(<span class="string">"click"</span>,function(e) {
+  // 检查事件源e<span class="preprocessor">.targe</span>是否为Li
+  if(e<span class="preprocessor">.target</span> &amp;&amp; e<span class="preprocessor">.target</span><span class="preprocessor">.nodeName</span><span class="preprocessor">.toUpperCase</span> == <span class="string">"LI"</span>) {
+    // 这里写处理过程
+    console<span class="preprocessor">.log</span>(<span class="string">"List item "</span>,e<span class="preprocessor">.target</span><span class="preprocessor">.id</span><span class="preprocessor">.replace</span>(<span class="string">"post-"</span>,<span class="string">""</span>),<span class="string">" was clicked!"</span>)<span class="comment">;</span>
+  }
 </code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/web前端/">web前端</a><a href="/tags/CSS3/">CSS3</a>
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
 
@@ -150,7 +165,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://luckr8.com/2014/06/04/css3-实现图片圆角/" data-title="css3 实现图片圆角 | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://luckr8.com/2014/06/07/js事件冒泡-事件委托/" data-title="JS事件冒泡 事件委托 | Luckr&#39;s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -159,19 +174,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/06/07/js事件冒泡-事件委托/" title="JS事件冒泡 事件委托">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  JS事件冒泡 事件委托</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/05/20/google-rubiks-cube-doodle-魔方涂鸦/"  title="Google Rubik&#39;s Cube doodle 魔方涂鸦">
+<a href="/2014/06/04/css3-实现图片圆角/"  title="css3 实现图片圆角">
  <strong>NEXT:</strong><br/> 
- <span>Google Rubik&#39;s Cube doodle 魔方涂鸦
+ <span>css3 实现图片圆角
 </span>
 </a>
 </div>
@@ -188,7 +195,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件冒泡"><span class="toc-number">1.</span> <span class="toc-text">事件冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件捕获"><span class="toc-number">2.</span> <span class="toc-text">事件捕获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM事件流"><span class="toc-number">3.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件代理和委托（Delegation）"><span class="toc-number">4.</span> <span class="toc-text">事件代理和委托（Delegation）</span></a></li></ol>
   </div>
 
 <div id="asidepart">
