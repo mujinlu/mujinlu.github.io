@@ -9,7 +9,7 @@
     
     <meta name="author" content="LU">
     
-    <meta name="description" content="JavaScript与HTML之间的交互是通过事件来实现的。事件，就是文档或者浏览器窗口中发生的一些特定的交互瞬间。可以使用侦听器（或处理程序）来预订事件，以便事件发生时执行相应的代码。这种模式在传统软件工程中被称为观察员模式，它支持页面的行为（JavaScript代码）与页面的外观（HTML,CS">
+    <meta name="description" content="本文简单介绍了JS事件的事件流机制，介绍了事件冒泡的一个应用—事件委托">
     
     
     
@@ -77,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-06-07T11:53:01.000Z" itemprop="datePublished">6月 7 2014</time>
-    更新日期:<time datetime="2014-06-08T09:13:38.000Z" itemprop="dateModified">6月 8 2014</time>
+    更新日期:<time datetime="2014-06-08T09:17:05.000Z" itemprop="dateModified">6月 8 2014</time>
     
   </p>
 </header>
@@ -89,7 +89,8 @@
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件冒泡"><span class="toc-number">1.</span> <span class="toc-text">事件冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件捕获"><span class="toc-number">2.</span> <span class="toc-text">事件捕获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM事件流"><span class="toc-number">3.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件代理和委托（Delegation）"><span class="toc-number">4.</span> <span class="toc-text">事件代理和委托（Delegation）</span></a></li></ol>
 		</div>
 		
-		<p>JavaScript与HTML之间的交互是通过事件来实现的。事件，就是文档或者浏览器窗口中发生的一些特定的交互瞬间。可以使用侦听器（或处理程序）来预订事件，以便事件发生时执行相应的代码。这种模式在传统软件工程中被称为观察员模式，它支持页面的行为（JavaScript代码）与页面的外观（HTML,CSS）的松散耦合。</p>
+		<p>本文简单介绍了JS事件的事件流机制，介绍了事件冒泡的一个应用—事件委托<br><a id="more"></a></p>
+<p>JavaScript与HTML之间的交互是通过事件来实现的。事件，就是文档或者浏览器窗口中发生的一些特定的交互瞬间。可以使用侦听器（或处理程序）来预订事件，以便事件发生时执行相应的代码。这种模式在传统软件工程中被称为观察员模式，它支持页面的行为（JavaScript代码）与页面的外观（HTML,CSS）的松散耦合。</p>
 <h3 id="事件冒泡">事件冒泡</h3>
 <p>IE的事件流叫事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传递到较为不具体的节点。如下：</p>
 <pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
