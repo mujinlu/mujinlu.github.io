@@ -77,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-06-11T03:18:26.000Z" itemprop="datePublished">6月 11 2014</time>
-    更新日期:<time datetime="2014-06-23T13:34:19.000Z" itemprop="dateModified">6月 23 2014</time>
+    更新日期:<time datetime="2014-06-23T14:19:48.000Z" itemprop="dateModified">6月 23 2014</time>
     
   </p>
 </header>
@@ -86,20 +86,20 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1简述作用域与闭包"><span class="toc-number">1.</span> <span class="toc-text">1简述作用域与闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-GET与POST的区别"><span class="toc-number">2.</span> <span class="toc-text">2.GET与POST的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-模拟实现JSON-stringify函数"><span class="toc-number">3.</span> <span class="toc-text">3.模拟实现JSON.stringify函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ul_li绑定onclick事件"><span class="toc-number">4.</span> <span class="toc-text">4.ul li绑定onclick事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-如何优化页面加载，常用的优化辅助工具"><span class="toc-number">5.</span> <span class="toc-text">5.如何优化页面加载，常用的优化辅助工具</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#页面级优化"><span class="toc-number">5.1.</span> <span class="toc-text">页面级优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码级优化"><span class="toc-number">5.2.</span> <span class="toc-text">代码级优化</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应"><span class="toc-number">6.</span> <span class="toc-text">6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天"><span class="toc-number">7.</span> <span class="toc-text">7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q1简述作用域与闭包"><span class="toc-number">1.</span> <span class="toc-text">Q1简述作用域与闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q2-GET与POST的区别"><span class="toc-number">2.</span> <span class="toc-text">Q2.GET与POST的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q3-模拟实现JSON-stringify函数"><span class="toc-number">3.</span> <span class="toc-text">Q3.模拟实现JSON.stringify函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q4-ul_li绑定onclick事件"><span class="toc-number">4.</span> <span class="toc-text">Q4.ul li绑定onclick事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q5-如何优化页面加载，常用的优化辅助工具"><span class="toc-number">5.</span> <span class="toc-text">Q5.如何优化页面加载，常用的优化辅助工具</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#页面级优化"><span class="toc-number">5.1.</span> <span class="toc-text">页面级优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码级优化"><span class="toc-number">5.2.</span> <span class="toc-text">代码级优化</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Q6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应"><span class="toc-number">6.</span> <span class="toc-text">Q6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天"><span class="toc-number">7.</span> <span class="toc-text">Q7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</span></a></li></ol>
 		</div>
 		
 		<p>记录前端相关的笔试以及面试题目<br><a id="more"></a></p>
-<h3 id="1简述作用域与闭包">1简述作用域与闭包</h3>
+<h3 id="Q1简述作用域与闭包">Q1简述作用域与闭包</h3>
 <p>要理解作用域，先要理解执行环境的概念，执行环境是JavaScript中最为重要的一个概念。执行环节定义了变量或函数有权访问的其它数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。全局执行环境是最外围的执行环境，在web浏览器中，全局执行环境被认为是window对象。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出，如关闭网页或浏览器时才被销毁）。  </p>
 <p>每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript程序中的执行流正是又这个方便的机制控制。</p>
 <p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链的用途，是保证对该执行环境有权访问的所有变量和函数进行有序的访问。作用域链是由执行环境的变量对象所组成的。作用域链的前端，始终是当前执行的代码所在环境的变量对象。作用域链的下一个变量对象，来自包含（外部的）环境，而在下一个变量对象来自下一个包含环境。这样一直延续到全局执行环境。<br><em>作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象</em>。</p>
 <p>标识符解析式沿着作用域链一级一级的搜索标识符的过程，搜索从作用域链前段开始，逐级的向后回溯，直至找到标识符为止（如果找不到，通常会导致错误发生）。</p>
 <p>下面来说闭包的概念</p>
 <p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数，</p>
-<h3 id="2-GET与POST的区别">2.GET与POST的区别</h3>
+<h3 id="Q2-GET与POST的区别">Q2.GET与POST的区别</h3>
 <p><img src="/img/gp.jpg" /></p>
-<h3 id="3-模拟实现JSON-stringify函数">3.模拟实现JSON.stringify函数</h3>
+<h3 id="Q3-模拟实现JSON-stringify函数">Q3.模拟实现JSON.stringify函数</h3>
 <pre><code>JS获取一个对象的属性和方法
 
     <span class="function"><span class="keyword">function</span> <span class="title">displayProp</span><span class="params">(obj)</span>{</span>    
@@ -109,9 +109,9 @@
     }  
     alert(names);  
     }  
-</code></pre><h3 id="4-ul_li绑定onclick事件">4.ul li绑定onclick事件</h3>
+</code></pre><h3 id="Q4-ul_li绑定onclick事件">Q4.ul li绑定onclick事件</h3>
 <p>参见另一篇<a href="http://luckr8.com/2014/06/07/js%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1-%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">事件委托</a></p>
-<h3 id="5-如何优化页面加载，常用的优化辅助工具">5.如何优化页面加载，常用的优化辅助工具</h3>
+<h3 id="Q5-如何优化页面加载，常用的优化辅助工具">Q5.如何优化页面加载，常用的优化辅助工具</h3>
 <p>　前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。另外，本着提高投入产出比的目的，后文提到的各种优化策略大致按照投入产出比从大到小的顺序排列。</p>
 <h4 id="页面级优化">页面级优化</h4>
 <p>　　1. 减少 HTTP请求数<br>　　<br>　　(1). 从设计实现层面简化页面<br>　　(2). 合理设置 HTTP缓存<br>　　(3). 资源合并与压缩<br>　　(4). CSS Sprites<br>　　合并 CSS图片，减少请求数的又一个好办法。但是后期扩展性比较差。<br>　　(5). Inline Images<br>　　使用 data: URL scheme的方式将图片嵌入到页面或 CSS中，如果不考虑资源管理上的问题的话，不失为一个好办法。如果是嵌入页面的话换来的是增大了页面的体积，而且无法利用浏览器缓存。使用在 CSS中的图片则更为理想一些。<br>　　(6). Lazy Load Images(花瓣)</p>
@@ -121,10 +121,10 @@
 <h4 id="代码级优化">代码级优化</h4>
 <p>略</p>
 <p>详细内容，请移步<a href="http://luckr8.com/2014/06/23/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">前端页面加载优化</a></p>
-<h3 id="6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应">6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</h3>
+<h3 id="Q6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应">Q6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</h3>
 <pre><code><span class="class">.right</span> <span class="rules">{<span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">200</span>px</span></span>;<span class="rule">}</span></span>
 <span class="class">.left</span> <span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">200</span>px</span></span>;<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule">}</span></span>
-</code></pre><h3 id="7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天">7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</h3>
+</code></pre><h3 id="Q7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天">Q7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</h3>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -182,7 +182,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1简述作用域与闭包"><span class="toc-number">1.</span> <span class="toc-text">1简述作用域与闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-GET与POST的区别"><span class="toc-number">2.</span> <span class="toc-text">2.GET与POST的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-模拟实现JSON-stringify函数"><span class="toc-number">3.</span> <span class="toc-text">3.模拟实现JSON.stringify函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-ul_li绑定onclick事件"><span class="toc-number">4.</span> <span class="toc-text">4.ul li绑定onclick事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-如何优化页面加载，常用的优化辅助工具"><span class="toc-number">5.</span> <span class="toc-text">5.如何优化页面加载，常用的优化辅助工具</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#页面级优化"><span class="toc-number">5.1.</span> <span class="toc-text">页面级优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码级优化"><span class="toc-number">5.2.</span> <span class="toc-text">代码级优化</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应"><span class="toc-number">6.</span> <span class="toc-text">6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天"><span class="toc-number">7.</span> <span class="toc-text">7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Q1简述作用域与闭包"><span class="toc-number">1.</span> <span class="toc-text">Q1简述作用域与闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q2-GET与POST的区别"><span class="toc-number">2.</span> <span class="toc-text">Q2.GET与POST的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q3-模拟实现JSON-stringify函数"><span class="toc-number">3.</span> <span class="toc-text">Q3.模拟实现JSON.stringify函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q4-ul_li绑定onclick事件"><span class="toc-number">4.</span> <span class="toc-text">Q4.ul li绑定onclick事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q5-如何优化页面加载，常用的优化辅助工具"><span class="toc-number">5.</span> <span class="toc-text">Q5.如何优化页面加载，常用的优化辅助工具</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#页面级优化"><span class="toc-number">5.1.</span> <span class="toc-text">页面级优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码级优化"><span class="toc-number">5.2.</span> <span class="toc-text">代码级优化</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#Q6-A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应"><span class="toc-number">6.</span> <span class="toc-text">Q6.A,B两个div,A在左侧，固定宽度200px，B在A右侧，与A并排，宽度随浏览器以及窗口自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q7-设计一个网页聊天器，可以和其它同时访问该页面的网页聊天"><span class="toc-number">7.</span> <span class="toc-text">Q7.设计一个网页聊天器，可以和其它同时访问该页面的网页聊天</span></a></li></ol>
   </div>
 
 <div id="asidepart">
