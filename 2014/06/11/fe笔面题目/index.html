@@ -77,7 +77,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-06-11T03:18:26.000Z" itemprop="datePublished">6月 11 2014</time>
-    更新日期:<time datetime="2014-09-10T15:53:43.000Z" itemprop="dateModified">9月 10 2014</time>
+    更新日期:<time datetime="2014-09-11T14:23:58.000Z" itemprop="dateModified">9月 11 2014</time>
     
   </p>
 </header>
@@ -201,6 +201,23 @@
 <span class="number">502</span>    Bad Gateway（网关故障）    代理使用的服务器遇到了上游的无效响应    
 </code></pre><h3 id="→页面缓存机制">→页面缓存机制</h3>
 <h3 id="→跨域的方法，html5_postmessage">→跨域的方法，html5 postmessage</h3>
+<p>跨域可以通过jsonp,script,window.name,iframe+hash参数。hml5提供跨文档消息传输Cross Document Messaging，主要包括接受信息的”message”事件和发送消息的”postMessage”方法。<br><em>发送消息的”postMessage”方法</em></p>
+<pre><code>targetWindow.postMessage(<span class="keyword">message</span>, targetOrigin); 
+<span class="number">1</span>.<span class="keyword">message</span>: 是要发送的消息，类型为 <span class="keyword">String</span>、<span class="keyword">Object</span> (IE8、<span class="number">9</span> 不支持) 
+<span class="number">2</span>.targetOrigin: 是限定消息接收范围，不限制请使用 <span class="string">'*'</span> 
+</code></pre><p><em>接受信息的”message”事件</em></p>
+<pre><code><span class="reserved">var</span> onmessage = <span class="reserved">function</span> (event) { 
+<span class="reserved">var</span> data = event.data; 
+<span class="reserved">var</span> origin = event.origin; 
+<span class="regexp">//</span><span class="keyword">do</span> someing 
+}; 
+<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.addEventListener != <span class="string">'undefined'</span>) { 
+<span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, onmessage, <span class="literal">false</span>); 
+} <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span>.attachEvent != <span class="string">'undefined'</span>) { 
+<span class="regexp">//</span><span class="keyword">for</span> ie 
+<span class="built_in">window</span>.attachEvent(<span class="string">'onmessage'</span>, onmessage); 
+} 
+</code></pre><p>回调函数第一个参数接收 Event 对象，有三个常用属性：<br>1.data: 消息<br>2.origin: 消息来源地址<br>3.source: 源 DOMWindow 对象 </p>
 <h3 id="→阻止事件冒泡，阻止浏览器默认行为">→阻止事件冒泡，阻止浏览器默认行为</h3>
 <p>阻止事件冒泡使之成为捕获型</p>
 <pre><code><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span><span class="params">(e)</span> {</span> 
